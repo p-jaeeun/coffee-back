@@ -1,7 +1,5 @@
 package com.hiddenc.hyun.mypage.controller;
 
-import com.hiddenc.admin.beans.adminAmontBean;
-import com.hiddenc.admin.beans.adminAmontBean2;
 import com.hiddenc.hyun.mypage.dto.*;
 import com.hiddenc.hyun.search.dto.ImageList;
 import com.hiddenc.hyun.search.dto.ReviewList;
@@ -10,7 +8,7 @@ import com.hiddenc.model.mapper.CafeMapper;
 import com.hiddenc.model.mapper.UserMapper;
 import com.hiddenc.model.mapper.VisitLogMapper;
 import com.hiddenc.hyun.mypage.dto.LikeUserCafeList.UserLikeListDto;
-import com.hiddenc.search.dto.AllResult;
+import com.hiddenc.hyun.search.dto.AllResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -5,7 +5,7 @@ import com.hiddenc.hyun.afterLoginMain.dto.SimpleCafeDto;
 import com.hiddenc.hyun.search.dto.ImageList;
 import com.hiddenc.hyun.search.dto.ReviewList;
 import com.hiddenc.hyun.search.dto.SearchResultDto;
-import com.hiddenc.search.dto.AllResult;
+import com.hiddenc.hyun.search.dto.AllResult;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
