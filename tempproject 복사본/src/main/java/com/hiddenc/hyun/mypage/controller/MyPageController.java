@@ -1,7 +1,5 @@
 package com.hiddenc.hyun.mypage.controller;
 
-import com.hiddenc.admin.beans.adminAmontBean;
-import com.hiddenc.admin.beans.adminAmontBean2;
 import com.hiddenc.hyun.mypage.dto.*;
 import com.hiddenc.hyun.search.dto.ImageList;
 import com.hiddenc.hyun.search.dto.ReviewList;
@@ -10,11 +8,12 @@ import com.hiddenc.model.mapper.CafeMapper;
 import com.hiddenc.model.mapper.UserMapper;
 import com.hiddenc.model.mapper.VisitLogMapper;
 import com.hiddenc.hyun.mypage.dto.LikeUserCafeList.UserLikeListDto;
-import com.hiddenc.search.dto.AllResult;
+import com.hiddenc.hyun.search.dto.AllResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -176,8 +175,10 @@ public class MyPageController {
 
                 // user_pw 수정
                 if (user_pw != null) {
+                    BCryptPasswordEncoder scpwd = new BCryptPasswordEncoder();
+                    String password = scpwd.encode(getImgDto.getUser_pw());
                     updateProfileDto.setUser_id(id);
-                    updateProfileDto.setUser_pw(getImgDto.getUser_pw());
+                    updateProfileDto.setUser_pw(password);
                     userMapper.updateUserPW(updateProfileDto);
                 }
 
@@ -198,7 +199,8 @@ public class MyPageController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return responseEntity;
+            ResponseEntity responseEntity1 = new ResponseEntity("changeCompleted", HttpStatus.OK);
+            return responseEntity1;
         }
     }
 

@@ -23,9 +23,9 @@ public class AdminConnection {
     }
 
     public AdminConnection(){
-        this.admin_id="host";
-        this.admin_pw="1234";
-        this.isLoggedIn=true;
+//        this.admin_id="host";
+//        this.admin_pw="1234";
+//        this.isLoggedIn=true;
 
     }
 

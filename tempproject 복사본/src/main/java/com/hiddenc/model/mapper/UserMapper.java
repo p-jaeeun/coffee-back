@@ -1,6 +1,7 @@
 package com.hiddenc.model.mapper;
 
 import com.hiddenc.admin.beans.AdminUserBean;
+import com.hiddenc.admin.beans.AdminUserDto;
 import com.hiddenc.hyun.mypage.dto.LikeUserCafeList.LikeCafeList;
 import com.hiddenc.hyun.mypage.dto.LikeUserCafeList.UserIdDto;
 import com.hiddenc.hyun.mypage.dto.LikeUserCafeList.UserLikeListDto;
@@ -114,5 +115,32 @@ public interface UserMapper {
     @Delete("DELETE FROM User WHERE User_PK = #{user_pk}")
     public void deleteUser(WithdrawUserDto withdrawUserDto);
 
+    //어드민 유저 블락
+    @Update("UPDATE User SET Is_Blocked_User=true WHERE User_PK = #{user_pk}")
+    public void blockUser(AdminUserDto adminUserDto);
+
+    //어드민 유저 블락 해제
+    @Update("UPDATE User SET Is_Blocked_User=false WHERE User_PK = #{user_pk}")
+    public void unlockUser(AdminUserDto adminUserDto);
+
+    //어드민 블락 유저 조회
+    @Select("SELECT * FROM User WHERE Is_Blocked_User = true")
+    public List<AdminUserDto> selectblockusers();
+
+    //어드민 특별한 사용자 지정
+    @Update("UPDATE User SET Is_SpecialUser= true WHERE User_PK = #{user_pk}")
+    public void specialuserdesignation(AdminUserDto adminUserDto);
+
+    //어드민 특별한 사용자 지정 해제
+    @Update("UPDATE User SET Is_SpecialUser= false WHERE User_PK = #{user_pk}")
+    public void unspecialusers(AdminUserDto adminUserDto);
+
+    //어드민 특별한 사용자 조회
+    @Select("SELECT * FROM User WHERE Is_SpecialUser = true")
+    public List<AdminUserDto> selectspecialuser();
+
+    //로그인시 블락 유저 조회
+    @Select("SELECT Is_Blocked_User FROM User WHERE User_ID = #{user_id}")
+    public Boolean loginblockusers(SimpleUserDto simpleUserDto);
 
 }

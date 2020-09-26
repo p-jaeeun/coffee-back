@@ -7,7 +7,7 @@ import com.hiddenc.hyun.search.dto.SearchUserDto;
 import com.hiddenc.model.dto.UserDto;
 import com.hiddenc.model.mapper.CafeMapper;
 import com.hiddenc.model.mapper.UserMapper;
-import com.hiddenc.search.dto.AllResult;
+import com.hiddenc.hyun.search.dto.AllResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -69,7 +69,7 @@ public class SearchController {
 // 카페상세페이지 - 카페정보, 카페리뷰, 카페이미지
     @PostMapping("/login/search/result/cafeinfo")
     @ResponseBody
-    public AllResult selectResult(AllResult allResult) {
+    public AllResult selectResult(@RequestBody AllResult allResult) {
         cafeMapper.updateCafeRate(allResult);
         allResult = cafeMapper.selectCafeInfo(allResult);
         List<ReviewList> list = cafeMapper.selectReview(allResult);

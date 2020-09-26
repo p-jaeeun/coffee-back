@@ -4,8 +4,8 @@ package com.hiddenc.configuration;
 import com.hiddenc.admin.beans.AdminConnection;
 
 import com.hiddenc.admin.beans.adminAmontBean;
-import com.hiddenc.admin.interceptor.AdminInterceptor;
-import com.hiddenc.admin.interceptor.LoginInterceptor;
+//import com.hiddenc.admin.interceptor.AdminInterceptor;
+//import com.hiddenc.admin.interceptor.LoginInterceptor;
 import com.hiddenc.hyun.review.dto.ReviewDto;
 import com.hiddenc.model.dto.CafeDto;
 import com.hiddenc.model.dto.UserDto;
@@ -101,11 +101,11 @@ public class ServletConfiguration implements WebMvcConfigurer {
     private AdminConnection adminConnection;
 
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor(userDto)).addPathPatterns("/login/**").excludePathPatterns("/login");
-        registry.addInterceptor(new AdminInterceptor(adminConnection)).addPathPatterns("/admin/**").excludePathPatterns("/admin");
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(new LoginInterceptor(userDto)).addPathPatterns("/login/**").excludePathPatterns("/login");
+//        registry.addInterceptor(new AdminInterceptor(adminConnection)).addPathPatterns("/admin/**").excludePathPatterns("/admin");
+//    }
 
     @Bean
     public BasicDataSource basicDataSource(){

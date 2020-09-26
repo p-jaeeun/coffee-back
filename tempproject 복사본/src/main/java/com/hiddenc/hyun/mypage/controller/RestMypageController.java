@@ -37,6 +37,8 @@ public class RestMypageController {
 
     @Autowired
     CafeMapper cafeMapper;
+
+
     //개인 페이지 카페 신규 등록 요청
 
     @PostMapping("/user/addcafe")
@@ -55,8 +57,8 @@ public class RestMypageController {
         } else {
             CafeImg cafeImg = new CafeImg();
             CafeBean cafeBean = new CafeBean();
-            // 데이터 베이스 처리를 현재 위치에서 처리
 
+            // 데이터 베이스 처리를 현재 위치에서 처리
             cafeAddBean.setCafe_name(simpleUserAdd.getCafe_name());
             cafeAddBean.setCafe_location(simpleUserAdd.getCafe_location());
             cafeAddBean.setCafe_menu(simpleUserAdd.getCafe_menu());
@@ -66,13 +68,22 @@ public class RestMypageController {
             cafeAddBean.setIs_enable_buy_bean(simpleUserAdd.getIs_enable_buy_bean());
             cafeAddBean.setIs_enable_handdrip(simpleUserAdd.getIs_enable_handdrip());
             cafeAddBean.setUser_id(userDto.getUser_idpk());//userDTO에서 가져오기
+            Boolean special = mypageMapper.special(cafeAddBean);
+            if(special){
+                cafeAddBean.setIs_checked(true);
+            }else{
+                cafeAddBean.setIs_checked(false);
+            }
             cafeAddBean.setCafe_sns(simpleUserAdd.getCafe_sns());
             mypageMapper.addCafe(cafeAddBean);
 
 
+            System.out.println(special);
             cafeImg.setCafe_id(mypageMapper.cafeid2(cafeAddBean));
-
-            cafeImg.setIs_checked(false);
+            if(special){
+                cafeImg.setIs_checked(true);
+            }else{
+                cafeImg.setIs_checked(false);}
 
             List<MultipartFile> files = simpleCafeImg.getCafe_image();
             List<String> uploadFileNames = new ArrayList<String>();

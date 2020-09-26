@@ -40,7 +40,7 @@
           <a href="javascript:void(0)"><img src="${path}/images/hiddenc_logo.png" alt="logo_img" /></a>
         </div>
         <div class="extras extra_top">
-          <span class="accountbtn account_text">Start</i></span>
+          <span class="accountbtn account_text">Start</span>
         </div>
       </div>
 

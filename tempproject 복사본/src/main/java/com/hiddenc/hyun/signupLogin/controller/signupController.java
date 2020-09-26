@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -35,6 +36,10 @@ public class signupController {
         try {
             System.out.println("회원가입");
             System.out.println(simpleUserDto);
+            BCryptPasswordEncoder scpwd = new BCryptPasswordEncoder();
+            String password = scpwd.encode(simpleUserDto.getUser_pw());
+            simpleUserDto.setUser_pw(password);
+            System.out.println(password);
             ResponseEntity responseEntity;
 
             // 유효성검사

@@ -8,6 +8,7 @@ import com.hiddenc.model.dto.UserDto;
 import com.hiddenc.model.mapper.CafeMapper;
 import com.hiddenc.model.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.*;
 import org.springframework.validation.BindingResult;
@@ -331,17 +332,66 @@ public class RestExampleController {
     }
 
 //관리자 카페인 기준 변경
-    @PostMapping("/admin/amont")
-    public ResponseEntity adminadmont(adminAmontBean2 adminAmontBean2){
+    @PostMapping("/admin/caffeineStandard")
+    public ResponseEntity admincaffeineStandard(adminAmontBean2 adminAmontBean2){
 
         adminAmontBean.setTotalAddcafe2(adminAmontBean2.getTotalAddcafe2());
         adminAmontBean.setUserlike2(adminAmontBean2.getUserlike2());
 
 
-        return new ResponseEntity("amont complite", HttpStatus.OK);
+        return new ResponseEntity("caffeineStandard complite", HttpStatus.OK);
     }
 
 
+    //관리자 유저 블락
+    @PostMapping("admin/userblock")
+    public ResponseEntity adminUserBlock(AdminUserDto adminUserDto){
+
+        userMapper.blockUser(adminUserDto);
+
+        return new ResponseEntity("block complite", HttpStatus.OK);
+    }
+
+
+    //관리자 유저 블락 해제
+    @PostMapping("admin/userunlock")
+    public ResponseEntity unlockUser(AdminUserDto adminUserDto){
+
+        userMapper.unlockUser(adminUserDto);
+
+        return new ResponseEntity("unLock complite", HttpStatus.OK);
+    }
+
+    //관리자 블락 유저 조회
+    @GetMapping("admin/blockusers")
+    public ResponseEntity adminblockusers(AdminUserDto adminUserDto){
+
+        return new ResponseEntity(userMapper.selectblockusers(),HttpStatus.OK);
+    }
+
+    //관리자 특별한 사용자 지정
+    @PostMapping("admin/specialuserdesignation")
+    public ResponseEntity specialuserdesignation(AdminUserDto adminUserDto){
+
+        userMapper.specialuserdesignation(adminUserDto);
+
+        return new ResponseEntity("specialuser complite",HttpStatus.OK);
+    }
+
+    //관리자 특별한 사용자 지정 해제
+    @PostMapping("admin/unspecialusers")
+    public ResponseEntity unspecialusers(AdminUserDto adminUserDto){
+        userMapper.unspecialusers(adminUserDto);
+
+        return new ResponseEntity("unspecialusers complite",HttpStatus.OK);
+    }
+
+    //관리자 특별한 사용자 조회
+    @GetMapping("admin/specialusers")
+    public ResponseEntity selectspecialuser(AdminUserDto adminUserDto){
+
+        return new ResponseEntity(userMapper.selectspecialuser(),HttpStatus.OK);
+    }
 }
 
 

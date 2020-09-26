@@ -26,8 +26,8 @@ public class UserDto {
 
 
     public UserDto() {
-        this.user_idpk=1;
-        this.isLoggedIn=true;
+//        this.user_idpk=1;
+//        this.isLoggedIn=true;
 
     }
 
